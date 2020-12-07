@@ -18,16 +18,16 @@ def index():
 
 @app.route('/token')
 def generate_token():
-    # get credentials for environment variables
+    # get credentials from environment variables
     account_sid = os.getenv('TWILIO_ACCOUNT_SID')
     api_key = os.getenv('TWILIO_API_KEY')
     api_secret = os.getenv('TWILIO_API_SECRET')
     sync_service_sid = os.getenv('TWILIO_SYNC_SERVICE_SID', 'default')
     username = request.args.get('username', fake.user_name())
 
-    # Create access token with credentials
+    # create access token with credentials
     token = AccessToken(account_sid, api_key, api_secret, identity=username)
-    # Create a Sync grant and add to token
+    # create a Sync grant and add to token
     sync_grant = SyncGrant(sync_service_sid)
     token.add_grant(sync_grant)
     return jsonify(identity=username, token=token.to_jwt().decode())
