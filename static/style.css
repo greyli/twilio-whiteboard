@@ -1,0 +1,42 @@
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.whiteboard {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+}
+
+.tips {
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+
+.buttons {
+    position: fixed;
+    right: 10px;
+    top: 10px;
+    z-index: 1;
+}
+
+.btn {
+    font-size: 14px;
+    padding: 5px 10px;
+    text-decoration: none;
+    cursor: pointer;
+    background-color: white;
+    color: black;
+    border: 5px solid #555555;
+}
