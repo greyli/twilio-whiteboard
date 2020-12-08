@@ -8,7 +8,7 @@ $ git clone https://github.com/greyli/twilio-whiteboard
 $ cd twilio-whiteboard
 $ python3 -m venv venv  # use "python -m venv venv" on Windows
 $ . venv/bin/activate  # use "venv\Scripts\activate" on Windows
-(venv) $ pip install -r requirements
+(venv) $ pip install -r requirements.txt
 (venv) $ flask run
 ```
 
