@@ -2,13 +2,11 @@ import os
 
 from flask import Flask, request, jsonify, render_template
 from faker import Faker
-from twilio.rest import Client
 from twilio.jwt.access_token import AccessToken
 from twilio.jwt.access_token.grants import SyncGrant
 
 app = Flask(__name__)
 fake = Faker()
-twilio_client = Client()
 
 
 @app.route('/')

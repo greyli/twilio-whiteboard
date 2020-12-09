@@ -1,14 +1,24 @@
 # Twilio Whiteboard
 
-Rename the `.env.example` to `.env`, fill the variables in it (You will need to register a free [Twilio account](http://www.twilio.com/referral/w6qBg0)).
+This is a simple collaborative whiteboard build with Flask and Twilio Sync.
 
-Run the app with the following commands:
+![](demo.gif)
+
+## Installation
+
+Clone the repo and bulid the environment:
 ```
 $ git clone https://github.com/greyli/twilio-whiteboard
 $ cd twilio-whiteboard
 $ python3 -m venv venv  # use "python -m venv venv" on Windows
 $ . venv/bin/activate  # use "venv\Scripts\activate" on Windows
-(venv) $ pip install -r requirements
+(venv) $ pip install -r requirements.txt
+```
+
+Rename the `.env.example` to `.env`, fill the variables in it (You will need to register a free [Twilio account](http://www.twilio.com/referral/w6qBg0)).
+
+Run the application with:
+```
 (venv) $ flask run
 ```
 
