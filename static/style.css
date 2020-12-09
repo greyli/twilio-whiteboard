@@ -28,7 +28,7 @@ html, body {
     position: fixed;
     right: 10px;
     top: 10px;
-    z-index: 1;
+    z-index: 1;  /* make the button on top of the whiteboard */
 }
 
 .btn {

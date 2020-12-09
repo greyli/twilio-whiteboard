@@ -2,6 +2,8 @@ $(function () {
     var syncClient;
     var syncStream;
     var message = $('#message');
+    var colorBtn = $('#color-btn');
+    var clearBtn = $('#clear-btn');
     var canvas = $('.whiteboard')[0];
     var context = canvas.getContext('2d');
     var current = {
@@ -30,13 +32,13 @@ $(function () {
         });
     });
 
-    function syncDrawingData(data){
+    function syncDrawingData(data) {
         var w = canvas.width;
         var h = canvas.height;
         drawLine(data.x0 * w, data.y0 * h, data.x1 * w, data.y1 * h, data.color);
     }
 
-    function drawLine(x0, y0, x1, y1, color, syncStream){
+    function drawLine(x0, y0, x1, y1, color, syncStream) {
         context.beginPath();
         context.moveTo(x0, y0);
         context.lineTo(x1, y1);
@@ -59,23 +61,23 @@ $(function () {
         });
     }
 
-    function onMouseDown(e){
+    function onMouseDown(e) {
         drawing = true;
-        current.x = e.clientX||e.touches[0].clientX;
-        current.y = e.clientY||e.touches[0].clientY;
+        current.x = e.clientX || e.touches[0].clientX;
+        current.y = e.clientY || e.touches[0].clientY;
     }
 
-    function onMouseUp(e){
+    function onMouseUp(e) {
         if (!drawing) { return; }
         drawing = false;
-        drawLine(current.x, current.y, e.clientX||e.touches[0].clientX, e.clientY||e.touches[0].clientY, current.color, syncStream);
+        drawLine(current.x, current.y, e.clientX || e.touches[0].clientX, e.clientY || e.touches[0].clientY, current.color, syncStream);
     }
 
-    function onMouseMove(e){
+    function onMouseMove(e) {
         if (!drawing) { return; }
-        drawLine(current.x, current.y, e.clientX||e.touches[0].clientX, e.clientY||e.touches[0].clientY, current.color, syncStream);
-        current.x = e.clientX||e.touches[0].clientX;
-        current.y = e.clientY||e.touches[0].clientY;
+        drawLine(current.x, current.y, e.clientX || e.touches[0].clientX, e.clientY || e.touches[0].clientY, current.color, syncStream);
+        current.x = e.clientX || e.touches[0].clientX;
+        current.y = e.clientY || e.touches[0].clientY;
     }
 
     // limit the events number per second
@@ -91,13 +93,13 @@ $(function () {
         };
     }
 
-    function changeColor(){
-        current.color = '#' + Math.floor(Math.random() * 16777215).toString(16);
+    function changeColor() {
+        current.color = '#' + Math.floor(Math.random() * 16777215).toString(16);   // change line color
         // console.log(current.color)
-        $('#color-btn').css('border', '5px solid ' + current.color);
+        colorBtn.css('border', '5px solid ' + current.color);  // change the button border color
     };
 
-    function clearBoard(){
+    function clearBoard() {
         context.clearRect(0, 0, canvas.width, canvas.height);
     };
 
@@ -106,19 +108,19 @@ $(function () {
         canvas.height = window.innerHeight;
     };
 
-    canvas.addEventListener('mousedown', onMouseDown, false);
-    canvas.addEventListener('mouseup', onMouseUp, false);
-    canvas.addEventListener('mouseout', onMouseUp, false);
-    canvas.addEventListener('mousemove', throttle(onMouseMove, 10), false);
+    canvas.addEventListener('mousedown', onMouseDown);
+    canvas.addEventListener('mouseup', onMouseUp);
+    canvas.addEventListener('mouseout', onMouseUp);
+    canvas.addEventListener('mousemove', throttle(onMouseMove, 10));
     // add mobile touch support
-    canvas.addEventListener('touchstart', onMouseDown, false);
-    canvas.addEventListener('touchend', onMouseUp, false);
-    canvas.addEventListener('touchcancel', onMouseUp, false);
-    canvas.addEventListener('touchmove', throttle(onMouseMove, 10), false);
+    canvas.addEventListener('touchstart', onMouseDown);
+    canvas.addEventListener('touchend', onMouseUp);
+    canvas.addEventListener('touchcancel', onMouseUp);
+    canvas.addEventListener('touchmove', throttle(onMouseMove, 10));
 
-    $('#color-btn').on('click', changeColor);
-    $('#clear-btn').on('click', clearBoard);
+    colorBtn.on('click', changeColor);
+    clearBtn.on('click', clearBoard);
 
-    window.addEventListener('resize', onResize, false);
+    window.addEventListener('resize', onResize);
     onResize();
 });
