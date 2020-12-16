@@ -6,7 +6,7 @@ This is a simple collaborative whiteboard build with Flask and Twilio Sync.
 
 ## Installation
 
-Clone the repo and bulid the environment:
+Clone the repo and build the environment:
 ```
 $ git clone https://github.com/greyli/twilio-whiteboard
 $ cd twilio-whiteboard
